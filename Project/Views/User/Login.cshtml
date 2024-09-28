@@ -1,0 +1,31 @@
+﻿@{
+    Layout = "~/Views/Shared/_CenterMediumLayout.cshtml";
+    ViewData["Title"] = "Login";
+}
+
+
+@if (TempData.ContainsKey("error"))
+{
+    <div class="text-danger mb-5 text-center">
+        @(TempData["error"])
+    </div>
+}
+
+
+<form method="post">
+    <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required
+               @(TempData.ContainsKey("email") ? "value=" + TempData["email"] : "")>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required
+               @(TempData.ContainsKey("password") ? "value=" + TempData["password"] : "")>
+    </div>
+    <div class="d-flex justify-content-between">
+        <a href="/User/Register">Create an account</a>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </div>
+</form>
+

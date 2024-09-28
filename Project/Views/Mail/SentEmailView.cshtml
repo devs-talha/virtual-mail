@@ -1,0 +1,43 @@
+﻿@{
+    Layout = "~/Views/Shared/_CenterLargeLayout.cshtml";
+        ViewData["Title"] = "View Email";
+}
+
+
+@if (TempData.ContainsKey("error"))
+{
+<div class="text-danger mb-5 text-center">
+    @(TempData["error"])
+</div>
+}
+
+@{
+    Mail mail = (Mail) ViewData["mail"];
+}
+
+<form method="post" action="/Mail/SentEmailDelete">
+    <input type="hidden" id="id" name="id" value=@(mail.Id) />
+    <div class="form-group">
+        <label for="date">Date</label>
+        <input class="form-control" id="date" name="date" placeholder="Date" required disabled
+               value="@(mail.Date)">
+    </div>
+    <div class="form-group">
+        <label for="to">To</label>
+        <input class="form-control" type="email" id="to" name="to" placeholder="Receiver's email" required disabled
+               value="@(mail.Receiver.Email)">
+    </div>
+    <div class="form-group">
+        <label for="subject">Subject</label>
+        <input class="form-control" id="subject" name="subject" placeholder="Email subject" required disabled
+               value="@(mail.Subject)">
+    </div>
+    <div class="form-group">
+        <label for="body">Body</label>
+        <textarea class="form-control" id="body" name="body" rows="5" required placeholder="Email body" disabled>@(mail.Body)</textarea>
+    </div>
+    <div class="d-flex justify-content-end">
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </div>
+</form>
+

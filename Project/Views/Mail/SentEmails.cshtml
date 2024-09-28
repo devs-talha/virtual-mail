@@ -1,0 +1,30 @@
+﻿@{
+    Layout = "~/Views/Shared/_CenterLargeLayout.cshtml";
+    ViewData["Title"] = "Sent Emails";
+}
+
+@{
+    List<Mail> mails = (List<Mail>) ViewData["mails"];
+    if (mails.Count == 0)
+    {
+        <div class="text-center">No new email</div>
+    } else { 
+        <ul class="list-group list-group-flush">
+            @foreach (Mail mail in mails)
+            {
+                <li >
+                    <form class="form-inline list-group-item w-100" method="post" action="/Mail/SentEmailView">
+                        <div class="d-flex w-100 justify-content-between flex-wrap">
+                            <div class="d-flex h-100 align-items-center"><div>@mail.Receiver.Email</div></div>
+                            <div>
+                                <input type="hidden" id="id" name="id" value=@(mail.Id) />
+                                <button class="btn" type="submit">@mail.Subject</button>
+                            </div>
+                            <div class="d-flex h-100 align-items-center">@mail.Date</div>
+                        </div>
+                    </form> 
+                </li>
+            }
+        </ul>
+    }
+ }

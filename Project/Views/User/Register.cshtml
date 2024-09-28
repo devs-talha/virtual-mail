@@ -1,0 +1,56 @@
+﻿@{
+    Layout = "~/Views/Shared/_CenterMediumLayout.cshtml";
+        ViewData["Title"] = "Register";
+}
+
+
+@if (TempData.ContainsKey("error"))
+{
+<div class="text-danger mb-5 text-center">
+    @(TempData["error"])
+</div>
+} else if (TempData.ContainsKey("success"))
+{
+<div class="text-success mb-5 text-center">
+    @(TempData["success"])
+</div>
+}
+
+<form method="post">
+    <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input class="form-control" id="firstName" name="firstName" placeholder="First name" required
+               @(TempData.ContainsKey("firstName") ? "value=" + TempData["firstName"] : "" )>
+    </div>
+    <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input class="form-control" id="lastName" name="lastName" placeholder="Last name" required
+               @(TempData.ContainsKey("lastName") ? "value=" + TempData["lastName"] : "" )>
+    </div>
+    <div class="form-group">
+        <label for="dateOfBirth">Date of Birth</label>
+        <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth"
+               placeholder="Date of Birth" required
+               @(TempData.ContainsKey("dateOfBirth") ? "value=" + TempData["dateOfBirth"] : "" )>
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required
+               @(TempData.ContainsKey("email") ? "value=" + TempData["email"] : "" )>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required
+               @(TempData.ContainsKey("password") ? "value=" + TempData["password"] : "" )>
+    </div>
+    <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Re-enter password" required
+               @(TempData.ContainsKey("confirmPassword") ? "value=" + TempData["confirmPassword"] : "" )>
+    </div>
+    <div class="d-flex justify-content-between">
+        <a href="/User/Login">Already have an account?</a>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </div>
+</form>
+
